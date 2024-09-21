@@ -23,7 +23,7 @@ Route::get('/landingpage/profile', function(){
     return view('landingpage.profile');
 })->name('landingpage.profile');
 
-Route::get('/dashboard', function(){
-    return view('dashboard.index');
+Route::get('/admin/dashboard', function(){
+    return view('admin.index');
 });
 
