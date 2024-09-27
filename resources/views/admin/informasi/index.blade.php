@@ -1,11 +1,13 @@
 @extends('admin.layouts.master')
 
+@section('title','Informasi')
+
 @section('content')
-    <h1>Information Page</h1>
+    <h1 class="px-4 text-white">Data Informasi</h1>
 
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
                 <div class="card mb-4">
 
                     <div class="card-header pb-0">
@@ -48,13 +50,24 @@
                                                 <p class="text-xs font-weight-bold mb-0">{{ $information->description }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <img src="../assets/img/team-3.jpg" class="avatar avatar-sm" alt="user2">
+                                                @if ($information->image)
+                                                <img src="{{ asset('storage/images/information/'.$information->image) }}" class="avatar avatar-sm" alt=""
+                                                    width="100px" class="img-thumbnail">
+                                                    @else
+                                                    <span class="badge badge-danger">No Image</span>
+                                               @endif
                                             </td>
 
                                             <td class="align-middle text-center text-sm">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                <a href="{{ route('admin.informasi.edit', $information->id) }}" class="text-secondary font-weight-bold text-xs px-2"
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     Edit
+                                                </a>
+
+
+                                                <a href="{{ route('admin.informasi.delete', $information->id) }}" class="text-danger font-weight-bold text-xs px-2 "
+                                                    data-toggle="tooltip" data-original-title="Edit user">
+                                                    Hapus
                                                 </a>
                                             </td>
                                         </tr>
@@ -69,9 +82,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 @endsection
